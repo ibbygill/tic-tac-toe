@@ -39,13 +39,12 @@ const Boardarea = () => {
       );
     };
 
+    const status = `Next player: ${xIsNext ? 'X' : 'O'}`;
+
   return (
-      <div className="board" style={{
-        backgroundColor: 'skyblue',
-        margin: 20,
-        padding: 20,
-      }}>
-        Board
+      <div className="board"
+      >
+        <div className="status">{status}</div>
         <div className="board-row">
         {renderSquare(1)}{renderSquare(2)}{renderSquare(3)}
         </div>
@@ -63,10 +62,19 @@ const Boardarea = () => {
 const Gamebuild = () => {
   return (
     <div className="game">
-      Game
+      Tic-Tac-Toe
       <Boardarea />
     </div>
   );
 };
 
 ReactDOM.render(<Gamebuild />, document.getElementById('root'));
+
+
+function calculateWinner(square) {
+  const lines = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],
+    [0, 4, 8], [2, 4, 6],
+  ];
+}
