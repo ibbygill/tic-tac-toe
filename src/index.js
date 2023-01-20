@@ -24,6 +24,12 @@ const Boardarea = () => {
     
     // make a copy of squares state array
     const newSquares = [...squares];
+    const winnerDeclared = Boolean(calculateWinner(newSquares));
+    const squareFilled = Boolean(newSquares[i]);  
+
+    if (winnerDeclared || squareFilled) {
+      return;
+    }
     // mutate the copy and set the i-th element to X
     newSquares[i] = xIsNext ? 'X' : '0';
     // call the setSquares function with the mutated copy
@@ -39,7 +45,10 @@ const Boardarea = () => {
       );
     };
 
-    const status = `Next player: ${xIsNext ? 'X' : 'O'}`;
+    const winner = calculateWinner(squares);
+    const status = winner ? 
+    `Winner: ${winner}` :
+    `Next player: ${xIsNext ? 'X' : 'O'}`;
 
   return (
       <div className="board"
@@ -71,10 +80,20 @@ const Gamebuild = () => {
 ReactDOM.render(<Gamebuild />, document.getElementById('root'));
 
 
-function calculateWinner(square) {
+function calculateWinner(squares) {
   const lines = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8],
     [0, 3, 6], [1, 4, 7], [2, 5, 8],
     [0, 4, 8], [2, 4, 6],
   ];
+  for (let line of lines) {
+    const [a, b, c] = line;
+
+    if(squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a]; // X or 0
+    }
+
+  }
+
+  return null;
 }
