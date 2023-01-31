@@ -16,7 +16,7 @@ const Square = (props) => {
 }
 
 const Boardarea = () => {
-  const initialSquares = Array(9).fill(null);
+  const initialSquares = Array(8).fill(null);
   const [squares, setSquares] = useState(initialSquares);
   const [xIsNext, setxIsNext] = useState(true);
 
@@ -55,13 +55,13 @@ const Boardarea = () => {
       >
         <div className="status">{status}</div>
         <div className="board-row">
-        {renderSquare(1)}{renderSquare(2)}{renderSquare(3)}
+        {renderSquare(0)}{renderSquare(1)}{renderSquare(2)}
         </div>
         <div className="board-row">
-        {renderSquare(4)}{renderSquare(5)}{renderSquare(6)}
+        {renderSquare(3)}{renderSquare(4)}{renderSquare(5)}
         </div>
         <div className="board-row">
-        {renderSquare(7)}{renderSquare(8)}{renderSquare(9)}
+        {renderSquare(6)}{renderSquare(7)}{renderSquare(8)}
         </div>
       </div>
   );
